@@ -14,8 +14,6 @@ export default async function handler(req, res) {
     try {
       // Find the user with the provided username in the MongoDB database
       const user = await User.findOne({ "email": username });
-      console.log({ "email": username });
-      console.log(user);
       if (!user) {
         // User not found
         return res.status(401).json({ message: 'Login failed' });
@@ -23,7 +21,7 @@ export default async function handler(req, res) {
 
       if (password == user.password) {
         // Passwords match, login successful
-        // You can generate an authentication token (JWT) and return it here
+        // We can generate an authentication token (JWT) and return it here
         return res.status(200).json({ message: 'Login successful', token: 'your_jwt_token_here' });
       } else {
         // Passwords do not match
