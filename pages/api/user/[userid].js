@@ -4,10 +4,8 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const { userid } = req.query;
-      console.log(userid);
       // Fetch user data from the database based on userid
       const user = await User.findOne({ _id: userid });
-      console.log(user);
       if (user) {
         res.status(200).json(user);
       } else {
